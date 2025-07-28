@@ -1,0 +1,4 @@
+28.7.2025, 17:03:42 - DEBUG - req.query | {"title":"h","description":"w","severity":"2"}
+28.7.2025, 17:07:31 - DEBUG - req.query | {"title":"f","description":"was","severity":"6"}
+28.7.2025, 17:09:03 - DEBUG - req.query | {"title":"f","description":"was","severity":"2","_id":"HkyMs"}
+28.7.2025, 17:11:59 - DEBUG - req.query | {"title":"dad","description":"was","severity":"6"}
