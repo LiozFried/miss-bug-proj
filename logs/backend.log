@@ -11,3 +11,8 @@
 28.7.2025, 17:36:59 - ERROR - Couldnt find bug v7Amr in bugService
 28.7.2025, 17:36:59 - ERROR - Cannot remove bug
 28.7.2025, 17:40:30 - INFO - Bug HkyMs removed
+28.7.2025, 18:11:58 - DEBUG - req.query | {"title":"Cannot save a new car","description":"problem when clicking Save","severity":"5","_id":"abc123"}
+28.7.2025, 18:12:01 - INFO - Bug v7Amr removed
+28.7.2025, 18:13:12 - DEBUG - req.query | {"title":"Bug 1753715587440","description":"undefined","severity":"3"}
+28.7.2025, 18:13:20 - DEBUG - req.query | {"title":"Bug 1753715595878","description":"undefined","severity":"2"}
+28.7.2025, 18:13:26 - DEBUG - req.query | {"title":"Bug 1753715600922","description":"undefined","severity":"1"}

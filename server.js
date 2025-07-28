@@ -5,6 +5,8 @@ import { loggerService } from './service/logger.service.js'
 
 const app = express()
 
+app.use(express.static('public'))
+
 app.get('/api/bug', (req, res) => {
     bugService.query()
         .then(bugs => {

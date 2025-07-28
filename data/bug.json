@@ -3,14 +3,28 @@
     "_id": "abc123",
     "title": "Cannot save a new car",
     "description": "problem when clicking Save",
-    "severity": 3,
+    "severity": 5,
     "createdAt": 1542107359454
   },
   {
-    "_id": "v7Amr",
-    "title": "h",
-    "description": "w",
+    "_id": "n8mKY",
+    "title": "Bug 1753715587440",
+    "description": "undefined",
+    "severity": 3,
+    "createdAt": 1753715592879
+  },
+  {
+    "_id": "yfaXM",
+    "title": "Bug 1753715595878",
+    "description": "undefined",
     "severity": 2,
-    "createdAt": 1753711422685
+    "createdAt": 1753715600193
+  },
+  {
+    "_id": "Vm2Ht",
+    "title": "Bug 1753715600922",
+    "description": "undefined",
+    "severity": 1,
+    "createdAt": 1753715606163
   }
 ]
