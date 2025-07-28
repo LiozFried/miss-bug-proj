@@ -2,3 +2,12 @@
 28.7.2025, 17:07:31 - DEBUG - req.query | {"title":"f","description":"was","severity":"6"}
 28.7.2025, 17:09:03 - DEBUG - req.query | {"title":"f","description":"was","severity":"2","_id":"HkyMs"}
 28.7.2025, 17:11:59 - DEBUG - req.query | {"title":"dad","description":"was","severity":"6"}
+28.7.2025, 17:36:22 - ERROR - Couldnt find bug HkyMs in bugService
+28.7.2025, 17:36:22 - ERROR - Cannot remove bug
+28.7.2025, 17:36:27 - ERROR - Couldnt find bug HkyMs in bugService
+28.7.2025, 17:36:27 - ERROR - Cannot remove bug
+28.7.2025, 17:36:58 - ERROR - Couldnt find bug v7Amr in bugService
+28.7.2025, 17:36:58 - ERROR - Cannot remove bug
+28.7.2025, 17:36:59 - ERROR - Couldnt find bug v7Amr in bugService
+28.7.2025, 17:36:59 - ERROR - Cannot remove bug
+28.7.2025, 17:40:30 - INFO - Bug HkyMs removed
