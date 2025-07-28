@@ -16,25 +16,30 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
-app.get('api/bug/save', (req, res) => {
+app.get('/api/bug/save', (req, res) => {
+
     loggerService.debug('req.query', req.query)
 
-    const { _id, title, description, severity } = req.query
+    const { title, description, severity, _id } = req.query
     console.log('req.query', req.query)
-    const bugToSave = {
+    const bug = {
         _id,
         title,
         description,
         severity: +severity,
     }
 
-    bugService.save(bugToSave)
-        .then(savedBug => res.send(savedBug))
-        .catch(err => {
+    bugService.save(bug)
+        .then((savedBug) => {
+            res.send(savedBug)
+        })
+        .catch((err) => {
             loggerService.error('Cannot save bug', err)
             res.status(400).send('Cannot save bug')
         })
 })
+
+// app.get('/api/bug')
 
 app.get('/', (req, res) => res.send('Hello there'))
 app.listen(3030, () => console.log('Server ready at port 3030'))
