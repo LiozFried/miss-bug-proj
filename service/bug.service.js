@@ -6,11 +6,23 @@ const bugs = readJsonFile('./data/bug.json')
 export const bugService = {
     query,
     save,
+    getById,
 
 }
 
 function query() {
     return Promise.resolve(bugs)
+}
+
+function getById(bugId) {
+    const bug = bugs.find(bug => bug._id === bugId)
+
+    if (!bug) {
+        loggerService.error(`Couldnt find bug ${bugId} in bugService`)
+        return Promise.reject('Cannot get bug')
+    }
+
+    return Promise.resolve(bug)
 }
 
 function save(bugToSave) {

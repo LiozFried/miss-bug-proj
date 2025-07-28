@@ -39,7 +39,16 @@ app.get('/api/bug/save', (req, res) => {
         })
 })
 
-// app.get('/api/bug')
+app.get('/api/bug/:id', (req, res) => {
+    const bugId = req.params.id
+
+    bugService.getById(bugId)
+        .then(bug => res.send(bug))
+        .catch(err => {
+            loggerService.error(err)
+            res.status(400).send(err)
+        })
+})
 
 app.get('/', (req, res) => res.send('Hello there'))
 app.listen(3030, () => console.log('Server ready at port 3030'))
