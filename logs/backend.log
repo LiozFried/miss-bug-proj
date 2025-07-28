@@ -16,3 +16,4 @@
 28.7.2025, 18:13:12 - DEBUG - req.query | {"title":"Bug 1753715587440","description":"undefined","severity":"3"}
 28.7.2025, 18:13:20 - DEBUG - req.query | {"title":"Bug 1753715595878","description":"undefined","severity":"2"}
 28.7.2025, 18:13:26 - DEBUG - req.query | {"title":"Bug 1753715600922","description":"undefined","severity":"1"}
+28.7.2025, 18:24:33 - DEBUG - req.query | {"title":"Bug 1753716262042","description":"labadabadabdab","severity":"3"}

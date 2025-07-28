@@ -26,5 +26,12 @@
     "description": "undefined",
     "severity": 1,
     "createdAt": 1753715606163
+  },
+  {
+    "_id": "cMHd4",
+    "title": "Bug 1753716262042",
+    "description": "labadabadabdab",
+    "severity": 3,
+    "createdAt": 1753716274160
   }
 ]
