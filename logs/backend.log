@@ -17,3 +17,5 @@
 28.7.2025, 18:13:20 - DEBUG - req.query | {"title":"Bug 1753715595878","description":"undefined","severity":"2"}
 28.7.2025, 18:13:26 - DEBUG - req.query | {"title":"Bug 1753715600922","description":"undefined","severity":"1"}
 28.7.2025, 18:24:33 - DEBUG - req.query | {"title":"Bug 1753716262042","description":"labadabadabdab","severity":"3"}
+1.8.2025, 17:46:49 - DEBUG - req.query | {"title":"null","description":"null","severity":"0"}
+1.8.2025, 17:46:52 - INFO - Bug kzyxo removed

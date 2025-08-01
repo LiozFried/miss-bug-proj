@@ -11,7 +11,13 @@ app.use(cookieParser())
 
 
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+
+    const filterBy = {
+        txt: req.query.txt,
+        minSeverity: +req.query.minSeverity
+    }
+    console.log(filterBy)
+    bugService.query(filterBy)
         .then(bugs => {
             res.send(bugs)
         })
