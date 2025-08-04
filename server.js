@@ -50,6 +50,26 @@ app.get('/api/bug/totalBugs', (req, res) => {
         })
 })
 
+app.get('/api/bug/:id', (req, res) => {
+
+    const bugId = req.params.id
+
+    let visitedBugs = req.cookies.visitedBugs || []
+    if (visitedBugs.length > 3) {
+        return res.status(401).send('Wait for a bit')
+    }
+
+    visitedBugs = [...visitedBugs, bugId]
+    res.cookie('visitedBugs', visitedBugs, { maxAge: 1000 * 7})
+
+    bugService.getById(bugId)
+        .then(bug => res.send(bug))
+        .catch(err => {
+            loggerService.error(err)
+            res.status(400).send(err)
+        })
+})
+
 app.get('/api/bug/save', (req, res) => {
 
     loggerService.debug('req.query', req.query)
@@ -70,17 +90,6 @@ app.get('/api/bug/save', (req, res) => {
         .catch((err) => {
             loggerService.error('Cannot save bug', err)
             res.status(400).send('Cannot save bug')
-        })
-})
-
-app.get('/api/bug/:id', (req, res) => {
-    const bugId = req.params.id
-
-    bugService.getById(bugId)
-        .then(bug => res.send(bug))
-        .catch(err => {
-            loggerService.error(err)
-            res.status(400).send(err)
         })
 })
 
