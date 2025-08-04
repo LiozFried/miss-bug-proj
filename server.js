@@ -38,6 +38,18 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
+app.get('/api/bug/totalBugs', (req, res) => {
+
+    bugService.getTotalCount()
+        .then((count) => {
+            res.status(200).json(count)
+        })
+        .catch((err) => {
+            loggerService.error('Cannot get total bugs', err)
+            res.status(503).send('Cannot get total bugs')
+        })
+})
+
 app.get('/api/bug/save', (req, res) => {
 
     loggerService.debug('req.query', req.query)
