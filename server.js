@@ -8,16 +8,27 @@ const app = express()
 
 app.use(express.static('public'))
 app.use(cookieParser())
-
+app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
 
-    const filterBy = {
-        txt: req.query.txt,
-        minSeverity: +req.query.minSeverity
+    const { txt, sortBy, sortDir, minSeverity, pageIdx } = req.query
+
+    const filter = {
+        txt: txt || '',
+        minSeverity: parseInt(minSeverity) || 0
     }
-    console.log(filterBy)
-    bugService.query(filterBy)
+
+    const sort = {
+        sortBy,
+        sortDir: parseInt(sortDir) || 1
+    }
+
+    const page = {
+        pageIdx: parseInt(pageIdx) || 0
+    }
+
+    bugService.query(filter, sort, page)
         .then(bugs => {
             res.send(bugs)
         })
