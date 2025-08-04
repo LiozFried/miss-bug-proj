@@ -60,7 +60,7 @@ app.get('/api/bug/:id', (req, res) => {
     }
 
     visitedBugs = [...visitedBugs, bugId]
-    res.cookie('visitedBugs', visitedBugs, { maxAge: 1000 * 7})
+    res.cookie('visitedBugs', visitedBugs, { maxAge: 1000 * 7 })
 
     bugService.getById(bugId)
         .then(bug => res.send(bug))
@@ -70,18 +70,33 @@ app.get('/api/bug/:id', (req, res) => {
         })
 })
 
-app.get('/api/bug/save', (req, res) => {
+app.put('/api/bug/', (req, res) => {
 
-    loggerService.debug('req.query', req.query)
+    loggerService.debug('req.body', req.body)
 
-    const { title, description, severity, _id } = req.query
-    console.log('req.query', req.query)
+    const { title, description, severity, _id } = req.body
+
     const bug = {
         _id,
         title,
         description,
-        severity: +severity,
+        severity: +severity
     }
+
+    bugService.save(bug)
+        .then((savedBug) => {
+            res.send(savedBug)
+        })
+        .catch((err) => {
+            loggerService.error('Cannot save bug', err)
+            res.status(400).send('Cannot save bug')
+        })
+})
+
+app.post('/api/bug/', (req, res) => {
+
+    loggerService.debug('req.body', req.body)
+    const bug = bugService.getEmptyBug(req.body)
 
     bugService.save(bug)
         .then((savedBug) => {
