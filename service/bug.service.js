@@ -1,25 +1,42 @@
 import { makeId, readJsonFile, writeJsonFile } from './util.service.js'
 import { loggerService } from './logger.service.js'
 
-const bugs = readJsonFile('./data/bug.json')
-
 export const bugService = {
     query,
     save,
     getById,
     remove,
+    getEmptyBug,
+    getTotalCount,
 }
 
-function query(filterBy = {}) {
+const bugs = readJsonFile('./data/bug.json')
+
+const DISPLAY_BUGS_IN_PAGE = 4
+let totalPages = null
+
+function query(filter, sort, page) {
     let bugToDisplay = bugs
 
-    if (filterBy.txt) {
+    if (filter.txt) {
         const regExp = new RegExp(filterBy.txt, 'i')
-        bugToDisplay = bugToDisplay.filter(bug => regExp.test(bug.title))
+        bugToDisplay = bugToDisplay.filter(bug => regExp.test(bug.title)
+            || regExp.test(bug.description)
+            || bug.labels.some(label => regExp.test(label)))
     }
 
-    if (filterBy.minSeverity) {
-        bugToDisplay = bugToDisplay.filter(bug => bug.severity >= filterBy.minSeverity)
+    if (filter.minSeverity) {
+        bugToDisplay = bugToDisplay.filter(bug => bug.severity >= filter.minSeverity)
+    }
+
+    if (sort.sortBy) {
+        if (['severity', 'createdAt'].includes(sort.sortBy)) {
+            bugToDisplay.sort((a, b) =>
+                (a[sort.sortBy] - b[sort.sortBy]) * sort.sortDir)
+        } else {
+            bugToDisplay.sort((a, b) =>
+                (a[sort.sortBy].localeCompare(b[sort.sortBy] * sort.sortDir)))
+        }
     }
 
     return Promise.resolve(bugToDisplay)
