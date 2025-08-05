@@ -13,7 +13,7 @@ export const bugService = {
 const bugs = readJsonFile('./data/bug.json')
 
 const DISPLAY_BUGS_IN_PAGE = 4
-let totalPages = null
+// let totalPages = null
 
 function query(filter, sort, page) {
     let bugToDisplay = bugs
@@ -39,13 +39,18 @@ function query(filter, sort, page) {
         }
     }
 
-    totalPages = Math.floor(bugToDisplay / DISPLAY_BUGS_IN_PAGE)
-    let pageIdx = page.pageIdx
-    if (pageIdx < 0) pageIdx = totalPages - 1
-    if (pageIdx >= totalPages) pageIdx = 0
-    let startIdx = pageIdx * DISPLAY_BUGS_IN_PAGE
-    const endIdx = startIdx + DISPLAY_BUGS_IN_PAGE
-    bugToDisplay = bugToDisplay.slice(startIdx, endIdx)
+    if (page.pageIdx !== undefined) {
+        const startIdx = page.pageIdx * DISPLAY_BUGS_IN_PAGE
+        bugToDisplay = bugToDisplay.slice(startIdx, startIdx + DISPLAY_BUGS_IN_PAGE)
+    }
+
+    // totalPages = Math.floor(bugToDisplay / DISPLAY_BUGS_IN_PAGE)
+    // let pageIdx = page.pageIdx
+    // if (pageIdx < 0) pageIdx = totalPages - 1
+    // if (pageIdx >= totalPages) pageIdx = 0
+    // let startIdx = pageIdx * DISPLAY_BUGS_IN_PAGE
+    // const endIdx = startIdx + DISPLAY_BUGS_IN_PAGE
+    // bugToDisplay = bugToDisplay.slice(startIdx, endIdx)
 
     return Promise.resolve(bugToDisplay)
 }

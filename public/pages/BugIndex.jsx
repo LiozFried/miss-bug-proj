@@ -9,11 +9,11 @@ import { BugList } from '../cmps/BugList.jsx'
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
-    const [totalCount, setTotalCount] = useState(null)
+    // const [totalCount, setTotalCount] = useState(null)
 
     useEffect(() => {
         loadBugs()
-        getTotalCount()
+        // getTotalCount()
     }, [filterBy])
 
     function loadBugs() {
@@ -22,16 +22,16 @@ export function BugIndex() {
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
 
-    function getTotalCount() {
-        bugService.getTotalBugs()
-            .then((count) => {
-                const buttons = []
-                buttons.length = count
-                buttons.fill({ disable: false }, 0, count)
-                setTotalCount(buttons)
-            })
-            .catch(err => showErrorMsg('Couldnt get total count', err))
-    }
+    // function getTotalCount() {
+    //     bugService.getTotalBugs()
+    //         .then((count) => {
+    //             const buttons = []
+    //             buttons.length = count
+    //             buttons.fill({ disable: false }, 0, count)
+    //             setTotalCount(buttons)
+    //         })
+    //         .catch(err => showErrorMsg('Couldnt get total count', err))
+    // }
 
     function onRemoveBug(bugId) {
         bugService.remove(bugId)
@@ -77,15 +77,30 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
-    function onChangePage(idx) {
+    // function onChangePage(idx) {
+    //     setFilterBy(prevFilter => {
+    //         return { ...prevFilter, pageIdx: idx }
+    //     })
+    // }
+
+    function onChangePage(diff) {
+        if (filterBy.pageIdx === undefined) return
         setFilterBy(prevFilter => {
-            return { ...prevFilter, pageIdx: idx }
+            let nextPageIdx = prevFilter.pageIdx + diff
+            if (nextPageIdx < 0) nextPageIdx = 0
+            // if (nextPageIdx > MAX_PAGE) nextPageIdx = MAX_PAGE
+            return { ...prevFilter, pageIdx: nextPageIdx }
         })
     }
+
+    if (!bugs) return <div>Loading...</div>
 
     return <section className="bug-index main-content">
 
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        <button onClick={() => onChangePage(-1)}>-</button>
+        <span>{filterBy.pageIdx + 1 || 'No Pagination'}</span>
+        <button onClick={() => onChangePage(1)}>+</button>
         <header>
             <h3>Bug List</h3>
             <button onClick={onAddBug}>Add Bug</button>
@@ -96,7 +111,7 @@ export function BugIndex() {
             onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />
 
-        {totalCount && <footer>
+        {/* {totalCount && <footer>
             <div>
                 {totalCount.map((btn, idx) => (
                     <button onClick={() => onChangePage(idx)}
@@ -105,6 +120,6 @@ export function BugIndex() {
                     </button>
                 ))}
             </div>
-        </footer>}
+        </footer>} */}
     </section>
 }
