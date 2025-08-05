@@ -74,10 +74,24 @@ function save(bugToSave) {
 
     } else {
         bugToSave._id = makeId()
-        bugToSave.createdAt = Date.now()
+        // bugToSave.createdAt = Date.now()
         bugs.push(bugToSave)
     }
     return _saveBugs().then(() => bugToSave)
+}
+
+function getTotalCount() {
+    return Promise.resolve(totalPages)
+}
+
+function getEmptyBug({ title = '', description = '', severity = "", labels = [] }) {
+    return {
+        title,
+        description,
+        severity,
+        createdAt: Date.now(),
+        labels
+    }
 }
 
 function _saveBugs() {
