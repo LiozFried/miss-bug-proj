@@ -1,3 +1,5 @@
+import path from 'path'
+
 import express from 'express'
 import cookieParser from 'cookie-parser'
 
@@ -120,6 +122,10 @@ app.delete('/api/bug/:id', (req, res) => {
             loggerService.error('Cannot remove bug', err)
             res.status(400).send('Cannot remove bug')
         })
+})
+
+app.get('/*all', (req, res) => {
+    res.sendFile(path.resolve('public/index.html'))
 })
 
 app.get('/', (req, res) => res.send('Hello there'))
