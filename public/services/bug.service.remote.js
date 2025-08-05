@@ -6,7 +6,8 @@ export const bugService = {
     getById,
     save,
     remove,
-    getDefaultFilter
+    getDefaultFilter,
+    getTotalBugs
 }
 
 function query(filterBy = {}) {
@@ -36,19 +37,30 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    const url = BASE_URL + bugId + '/remove'
-    console.log(url)
-
-    return axios.get(url)
+    const url = BASE_URL + bugId
+    return axios.delete(url)
+        .then(res => res.data)
+        .catch(console.error)
 }
 
 function save(bug) {
-    var queryParmas = `?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
-    if (bug._id) queryParmas += `&_id=${bug._id}`
-
-    return axios.get(BASE_URL + 'save/' + queryParmas).then(res => res.data)
+    if (bug._id) {
+        return axios.put(BASE_URL + bug._id, bug)
+            .then(res => res.data)
+            .catch(console.error)
+    } else {
+        return axios.post(BASE_URL, bug)
+            .then(res => res.data)
+            .catch(console.error)
+    }
 }
 
 function getDefaultFilter() {
     return { txt: '', minSeverity: 0 }
+}
+
+function getTotalBugs() {
+    return axios.get(BASE_URL + 'totalBugs')
+        .then(res => res.data)
+        .catch(console.error)
 }
