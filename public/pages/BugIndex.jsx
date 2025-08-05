@@ -98,7 +98,13 @@ export function BugIndex() {
             return { ...prevFilter, pageIdx: nextPageIdx }
         })
     }
-    console.log(filterBy.pageIdx)
+
+    // function onSetSortBy(sortBy) {
+    //     setFilterBy(prevFilter => {
+    //         const sortDir = (prevFilter.sortBy === sortDir) ? -prevFilter.sortDir : 1
+    //         return { ...prevFilter, sortBy, sortDir }
+    //     })
+    // }
 
     if (!bugs) return <div>Loading...</div>
 

@@ -35,7 +35,7 @@ function query(filter, sort, page) {
                 (a[sort.sortBy] - b[sort.sortBy]) * sort.sortDir)
         } else {
             bugToDisplay.sort((a, b) =>
-                (a[sort.sortBy].localeCompare(b[sort.sortBy] * sort.sortDir)))
+                a[sort.sortBy].localeCompare(b[sort.sortBy]) * sort.sortDir)
         }
     }
 
