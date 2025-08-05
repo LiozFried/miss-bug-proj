@@ -8,7 +8,7 @@ import { BugList } from '../cmps/BugList.jsx'
 
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
-    const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState({ ...bugService.getDefaultFilter(), pageIdx: 0 })
     // const [totalCount, setTotalCount] = useState(null)
 
     useEffect(() => {
@@ -74,7 +74,13 @@ export function BugIndex() {
     }
 
     function onSetFilterBy(filterBy) {
-        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+        setFilterBy(prevFilter => {
+            return {
+                ...prevFilter,
+                ...filterBy,
+                pageIdx: 0,
+            }
+        })
     }
 
     // function onChangePage(idx) {
@@ -92,15 +98,18 @@ export function BugIndex() {
             return { ...prevFilter, pageIdx: nextPageIdx }
         })
     }
+    console.log(filterBy.pageIdx)
 
     if (!bugs) return <div>Loading...</div>
 
     return <section className="bug-index main-content">
 
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-        <button onClick={() => onChangePage(-1)}>-</button>
-        <span>{filterBy.pageIdx + 1 || 'No Pagination'}</span>
-        <button onClick={() => onChangePage(1)}>+</button>
+        <div className='pagination'>
+            <button onClick={() => onChangePage(-1)}>-</button>
+            <span>{filterBy.pageIdx + 1 || 'No Pagination'}</span>
+            <button onClick={() => onChangePage(1)}>+</button>
+        </div>
         <header>
             <h3>Bug List</h3>
             <button onClick={onAddBug}>Add Bug</button>

@@ -56,7 +56,7 @@ function save(bug) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return { txt: '', minSeverity: 0, pageIdx: 0, sortBy: '', sortDir: 1 }
 }
 
 function getTotalBugs() {

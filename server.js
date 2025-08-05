@@ -27,7 +27,7 @@ app.get('/api/bug', (req, res) => {
     }
 
     const page = {
-        pageIdx: parseInt(pageIdx) || 0
+        pageIdx
     }
 
     bugService.query(filter, sort, page)
