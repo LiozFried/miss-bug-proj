@@ -9,13 +9,28 @@ import { BugList } from '../cmps/BugList.jsx'
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
+    const [totalCount, setTotalCount] = useState(null)
 
-    useEffect(loadBugs, [filterBy])
+    useEffect(() => {
+        loadBugs()
+        getTotalCount()
+    }, [filterBy])
 
     function loadBugs() {
         bugService.query(filterBy)
             .then(setBugs)
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
+    }
+
+    function getTotalCount() {
+        bugService.getTotalBugs()
+            .then((count) => {
+                const buttons = []
+                buttons.length = count
+                buttons.fill({ disable: false }, 0, count)
+                setTotalCount(buttons)
+            })
+            .catch(err => showErrorMsg('Couldnt get total count', err))
     }
 
     function onRemoveBug(bugId) {
@@ -62,17 +77,34 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onChangePage(idx) {
+        setFilterBy(prevFilter => {
+            return { ...prevFilter, pageIdx: idx }
+        })
+    }
+
     return <section className="bug-index main-content">
-        
+
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <header>
             <h3>Bug List</h3>
             <button onClick={onAddBug}>Add Bug</button>
         </header>
-        
-        <BugList 
-            bugs={bugs} 
-            onRemoveBug={onRemoveBug} 
+
+        <BugList
+            bugs={bugs}
+            onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />
+
+        {totalCount && <footer>
+            <div>
+                {totalCount.map((btn, idx) => (
+                    <button onClick={() => onChangePage(idx)}
+                        key={idx} className={`page-btn ${btn.disable ? 'disabled' : ''}`}>
+                        {idx + 1}
+                    </button>
+                ))}
+            </div>
+        </footer>}
     </section>
 }
