@@ -19,7 +19,7 @@ function query(filter, sort, page) {
     let bugToDisplay = bugs
 
     if (filter.txt) {
-        const regExp = new RegExp(filterBy.txt, 'i')
+        const regExp = new RegExp(filter.txt, 'i')
         bugToDisplay = bugToDisplay.filter(bug => regExp.test(bug.title)
             || regExp.test(bug.description)
             || bug.labels.some(label => regExp.test(label)))
@@ -38,6 +38,14 @@ function query(filter, sort, page) {
                 (a[sort.sortBy].localeCompare(b[sort.sortBy] * sort.sortDir)))
         }
     }
+
+    totalPages = Math.floor(bugToDisplay / DISPLAY_BUGS_IN_PAGE)
+    let pageIdx = page.pageIdx
+    if (pageIdx < 0) pageIdx = totalPages - 1
+    if (pageIdx >= totalPages) pageIdx = 0
+    let startIdx = pageIdx * DISPLAY_BUGS_IN_PAGE
+    const endIdx = startIdx + DISPLAY_BUGS_IN_PAGE
+    bugToDisplay = bugToDisplay.slice(startIdx, endIdx)
 
     return Promise.resolve(bugToDisplay)
 }
