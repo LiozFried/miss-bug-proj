@@ -19,3 +19,6 @@
 28.7.2025, 18:24:33 - DEBUG - req.query | {"title":"Bug 1753716262042","description":"labadabadabdab","severity":"3"}
 1.8.2025, 17:46:49 - DEBUG - req.query | {"title":"null","description":"null","severity":"0"}
 1.8.2025, 17:46:52 - INFO - Bug kzyxo removed
+5.8.2025, 15:22:11 - INFO - Bug bug004 removed
+5.8.2025, 15:28:58 - DEBUG - req.body | {"_id":"bug003","title":"Details not syncing","description":"Details sync fails without error message","severity":5,"createdAt":1624107659454,"labels":["sync","critical"]}
+5.8.2025, 15:38:37 - DEBUG - req.body | {"title":"Cannot get Car","description":"Problem occurs when clicking get button","severity":5,"createdAt":1622108159454,"labels":["critical","need-CR","dev-branch"]}
