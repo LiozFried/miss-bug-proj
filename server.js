@@ -4,6 +4,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 
 import { bugService } from './service/bug.service.js'
+import { userService } from './service/user.service.js'
 import { loggerService } from './service/logger.service.js'
 
 const app = express()
@@ -121,6 +122,15 @@ app.delete('/api/bug/:id', (req, res) => {
         .catch(err => {
             loggerService.error('Cannot remove bug', err)
             res.status(400).send('Cannot remove bug')
+        })
+})
+
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => {
+            loggerService.error('Cannot load users', err)
+            res.status(400).send('Cannot load users')
         })
 })
 
