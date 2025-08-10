@@ -1,0 +1,37 @@
+[
+    {
+        "_id": "u101",
+        "username": "puki",
+        "password": "puki",
+        "fullname": "Puki Ja",
+        "isAdmin": false
+    },
+    {
+        "_id": "cQMMn",
+        "fullname": "Gigi Gu",
+        "password": "gigi",
+        "username": "gigi",
+        "isAdmin": false
+    },
+    {
+        "_id": "u102",
+        "username": "nala",
+        "password": "nala",
+        "fullname": "Nala Dis",
+        "isAdmin": false
+    },
+    {
+        "_id": "u103",
+        "fullname": "Kenneth Hey",
+        "password": "kenneth",
+        "username": "kenneth",
+        "isAdmin": false
+    },
+    {
+        "_id": "u104",
+        "username": "enzo",
+        "password": "enzo",
+        "fullname": "Enzo Diego",
+        "isAdmin": false
+    }
+]
