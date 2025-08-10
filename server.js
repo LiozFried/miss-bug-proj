@@ -134,6 +134,17 @@ app.get('/api/user', (req, res) => {
         })
 })
 
+app.get('/api/user/:id', (req, res) => {
+    const userId = req.params.id
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            loggerService.error('Cannot load user', err)
+            res.status(400).send('Cannot load user')
+        })
+})
+
 app.get('/*all', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))
 })
