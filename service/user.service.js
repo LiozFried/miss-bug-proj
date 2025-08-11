@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { readJsonFile } from './util.service.js'
+import { readJsonFile, makeId } from './util.service.js'
 import { use } from 'react'
 import { resolve } from 'path'
 
@@ -8,7 +8,7 @@ export const userService = {
     getById,
     getByUsername,
     remove,
-    add,
+    addUser,
 }
 
 const users = readJsonFile('data/user.json')
@@ -38,7 +38,22 @@ function remove(userId) {
     return _saveUserToFile()
 }
 
+function addUser(user) {
+    return getByUsername(user.username)
+        .then(existingUser => {
+            if (existingUser) return Promise.reject('Username taken')
 
+            user._id = makeId()
+            users.push(user)
+
+            return _saveUserToFile()
+                .then(() => {
+                    user = { ...user }
+                    delete user.password
+                    return user
+                })
+        })
+}
 
 function _saveUserToFile() {
     return new Promise((resolve, reject) => {
