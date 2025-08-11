@@ -26,3 +26,8 @@ function getById(userId) {
 
     return Promise.resolve(user)
 }
+
+function getByUsername(username) {
+    var user = users.find(user => user.username === username)
+    return Promise.resolve(user)
+}
