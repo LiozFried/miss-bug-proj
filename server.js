@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import { bugService } from './service/bug.service.js'
 import { userService } from './service/user.service.js'
 import { loggerService } from './service/logger.service.js'
+import { authService } from './service/auth.service.js'
 
 const app = express()
 
@@ -143,6 +144,18 @@ app.get('/api/user/:id', (req, res) => {
             loggerService.error('Cannot load user', err)
             res.status(400).send('Cannot load user')
         })
+})
+
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body
+
+    authService.checkLogin(credentials)
+        .then(user => {
+            const loginToken = authService.getLoginToken(user)
+           res.cookie('loginToken', loginToken)
+           res.send(user)
+        })
+        .catch(() => res.status(404).send('Invalid Credentials'))
 })
 
 app.get('/*all', (req, res) => {

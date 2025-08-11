@@ -8,3 +8,21 @@ export const authService = {
     getLoginToken,
     validateToken,
 }
+
+function checkLogin({ username, password }) {
+    return userService.getByUsername(username)
+        .then(user => {
+            if (user && user.password === password) {
+                user = { ...user }
+                delete user.password
+                return Promise.resolve(user)
+            }
+            return Promise.reject()
+        })
+}
+
+function getLoginToken(user) {
+    const str = JSON.stringify(user)
+    const encryptedStr = cryptr.encrypt(str)
+    return encryptedStr
+}
