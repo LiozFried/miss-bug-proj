@@ -66,17 +66,23 @@ function getById(bugId) {
     return Promise.resolve(bug)
 }
 
-function remove(bugId) {
+function remove(bugId, loggedinUser) {
     const idx = bugs.findIndex(bug => bug._id === bugId)
+    if (!isAuthorized(bugs[idx], loggedinUser)) {
+        return Promise.reject('Not authorized delete this bug')
+    }
+
     bugs.splice(idx, 1)
     return _saveBugs()
 }
 
-function save(bugToSave) {
+function save(bugToSave, loggedinUser) {
     if (bugToSave._id) {
         const idx = bugs.findIndex(bug => bug._id === bugToSave._id)
+        if (!isAuthorized(bugs[idx], loggedinUser)) {
+            return Promise.reject('Not authorized update this bug')
+        }
         bugs[idx] = { ...bugs[idx], ...bugToSave }
-
     } else {
         bugToSave._id = makeId()
         // bugToSave.createdAt = Date.now()
@@ -101,4 +107,8 @@ function getEmptyBug({ title = '', description = '', severity = "", labels = [] 
 
 function _saveBugs() {
     return writeJsonFile('./data/bug.json', bugs)
+}
+
+function isAuthorized(bug, loggedinUser) {
+    return bug.creator._id === loggedinUser._id || loggedinUser.isAdmin
 }
