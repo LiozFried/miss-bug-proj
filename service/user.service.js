@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { readJsonFile } from './util.service.js'
 import { use } from 'react'
+import { resolve } from 'path'
 
 export const userService = {
     query,
@@ -30,4 +31,23 @@ function getById(userId) {
 function getByUsername(username) {
     var user = users.find(user => user.username === username)
     return Promise.resolve(user)
+}
+
+function remove(userId) {
+    users = users.filter(user => user._id !== userId)
+    return _saveUserToFile()
+}
+
+
+
+function _saveUserToFile() {
+    return new Promise((resolve, reject) => {
+        const userStr = JSON.stringify(users, null, 2)
+        fs.writeFile('data/user.json', userStr, err => {
+            if (err) {
+                return console.log(err)
+            }
+            resolve()
+        })
+    })
 }
