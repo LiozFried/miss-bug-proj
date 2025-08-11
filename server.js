@@ -152,10 +152,31 @@ app.post('/api/auth/login', (req, res) => {
     authService.checkLogin(credentials)
         .then(user => {
             const loginToken = authService.getLoginToken(user)
-           res.cookie('loginToken', loginToken)
-           res.send(user)
+            res.cookie('loginToken', loginToken)
+            res.send(user)
         })
         .catch(() => res.status(404).send('Invalid Credentials'))
+})
+
+app.post('/api/auth/signup', (req, res) => {
+    const credentials = req.body
+
+    userService.addUser(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = authService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot signup')
+            }
+        })
+        .catch(() => res.status(400).send('Username taken'))
+})
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged out')
 })
 
 app.get('/*all', (req, res) => {
