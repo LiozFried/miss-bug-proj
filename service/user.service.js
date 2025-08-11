@@ -1,7 +1,5 @@
 import fs from 'fs'
 import { readJsonFile, makeId } from './util.service.js'
-import { use } from 'react'
-import { resolve } from 'path'
 
 export const userService = {
     query,
