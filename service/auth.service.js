@@ -26,3 +26,11 @@ function getLoginToken(user) {
     const encryptedStr = cryptr.encrypt(str)
     return encryptedStr
 }
+
+function validateToken(token) {
+    if (!token) return null
+
+    const str = cryptr.decrypt(token)
+    const user = JSON.parse(str)
+    return user
+}
