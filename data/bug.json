@@ -3,7 +3,7 @@
     "_id": "bug001",
     "title": "Cannot save a Car",
     "description": "Problem occurs when clicking Save button on form",
-    "severity": 2,
+    "severity": 1,
     "createdAt": 1622107359454,
     "labels": [
       "critical",
@@ -24,21 +24,6 @@
     "labels": [
       "sync",
       "critical"
-    ],
-    "creator": {
-      "_id": "u101",
-      "fullname": "Puki Ja"
-    }
-  },
-  {
-    "_id": "bug005",
-    "title": "App crashes on launch",
-    "description": "Crashes immediately after opening",
-    "severity": 3,
-    "createdAt": 1626107359454,
-    "labels": [
-      "crash",
-      "urgent"
     ],
     "creator": {
       "_id": "u101",

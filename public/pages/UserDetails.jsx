@@ -30,7 +30,7 @@ export function UserDetails() {
     function loadUserBugs() {
         bugService.query({ userId: params.userId })
             .then(res => {
-                setUserBugs(res.bugs)
+                setUserBugs(res)
             })
             .catch(err => {
                 console.log(err)

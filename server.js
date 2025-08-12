@@ -16,11 +16,12 @@ app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
 
-    const { txt, sortBy, sortDir, minSeverity, pageIdx } = req.query
+    const { txt, sortBy, sortDir, minSeverity, pageIdx, userId } = req.query
 
     const filter = {
         txt: txt || '',
-        minSeverity: parseInt(minSeverity) || 0
+        minSeverity: parseInt(minSeverity) || 0,
+        userId: userId || ''
     }
 
     const sort = {
