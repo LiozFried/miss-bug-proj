@@ -12,6 +12,7 @@ import { BugIndex } from './pages/BugIndex.jsx'
 import { BugDetails } from './pages/BugDetails.jsx'
 import { UserDetails } from './pages/UserDetails.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
+import { AdminDashboard } from './pages/AdminDashboard.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { NotFound } from './cmps/NotFound.jsx'
 
@@ -33,6 +34,7 @@ export function App() {
 
                         <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
                         <Route path="/user/:userId" element={<UserDetails />} />
+                        <Route path="/admin" element={<AdminDashboard />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>
