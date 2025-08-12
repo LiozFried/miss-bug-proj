@@ -32,8 +32,8 @@ function getByUsername(username) {
 }
 
 function remove(userId) {
-    users = users.filter(user => user._id !== userId)
-    return _saveUserToFile()
+	users = users.filter(user => user._id !== userId)
+	return _saveUsersToFile()
 }
 
 function addUser(user) {
@@ -53,15 +53,14 @@ function addUser(user) {
         })
 }
 
-function _saveUserToFile() {
-    return new Promise((resolve, reject) => {
-        const userStr = JSON.stringify(users, null, 2)
-        fs.writeFile('data/user.json', userStr, err => {
-            if (err) {
-                console.log('Error writing to file:', err)
-                return reject('Cannot write to file')
-            }
-            resolve()
-        })
-    })
+function _saveUsersToFile() {
+	return new Promise((resolve, reject) => {
+		const usersStr = JSON.stringify(users, null, 2)
+		fs.writeFile('data/user.json', usersStr, err => {
+			if (err) {
+				return console.log(err)
+			}
+			resolve()
+		})
+	})
 }
