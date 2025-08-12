@@ -10,3 +10,8 @@ function query() {
     return axios.get(BASE_URL)
         .then(res => res.data)
 }
+
+function getById(userId) {
+    return axios.get(BASE_URL + userId)
+        .then(res => res.data)
+}
