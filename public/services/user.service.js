@@ -5,3 +5,8 @@ export const userService = {
     getById,
     getEmptyCredentials,
 }
+
+function query() {
+    return axios.get(BASE_URL)
+        .then(res => res.data)
+}
