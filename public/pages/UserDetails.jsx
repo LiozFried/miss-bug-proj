@@ -1,7 +1,6 @@
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
 
-import { json } from "express"
 import { userService } from "../services/user.service.js"
 
 export function UserDetails() {
