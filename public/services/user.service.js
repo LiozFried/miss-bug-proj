@@ -15,3 +15,11 @@ function getById(userId) {
     return axios.get(BASE_URL + userId)
         .then(res => res.data)
 }
+
+function getEmptyCredentials() {
+    return {
+        username: '',
+        password: '',
+        fullname: ''
+    }
+}
