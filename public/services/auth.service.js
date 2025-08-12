@@ -20,6 +20,11 @@ function signup({ username, password, fullname }) {
         .then(_setLoggedinUser)
 }
 
+function logout() {
+    return axios.post(BASE_URL + 'logout')
+        .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
 function _setLoggedinUser(user) {
     const { _id, fullname, isAdmin } = user
     const userToSave = { _id, fullname, isAdmin }
