@@ -29,3 +29,7 @@
 12.8.2025, 20:44:33 - ERROR - Cannot get bug
 12.8.2025, 20:45:45 - INFO - Bug bug003 removed
 12.8.2025, 20:58:38 - INFO - Bug bug006 removed
+12.8.2025, 21:29:29 - ERROR - Cannot delete user! | ReferenceError: __dirname is not defined
+12.8.2025, 21:29:38 - ERROR - Cannot delete user! | ReferenceError: __dirname is not defined
+12.8.2025, 21:30:32 - ERROR - Cannot delete user! | ReferenceError: __dirname is not defined
+12.8.2025, 21:52:57 - ERROR - Cannot delete user! | sorry not found

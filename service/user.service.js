@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 import { readJsonFile, makeId } from './util.service.js'
 
 export const userService = {
@@ -58,7 +59,8 @@ function _saveUserToFile() {
         const userStr = JSON.stringify(users, null, 2)
         fs.writeFile('data/user.json', userStr, err => {
             if (err) {
-                return console.log(err)
+                console.log('Error writing to file:', err)
+                return reject('Cannot write to file')
             }
             resolve()
         })
