@@ -44,6 +44,7 @@
     "username": "lioz",
     "password": "lioz",
     "fullname": "Lioz Fried",
-    "_id": "K056f"
+    "_id": "K056f",
+    "isAdmin": true
   }
 ]
