@@ -25,6 +25,10 @@ function logout() {
         .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+function getLoggedinUser() {
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
 function _setLoggedinUser(user) {
     const { _id, fullname, isAdmin } = user
     const userToSave = { _id, fullname, isAdmin }
