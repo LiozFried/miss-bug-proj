@@ -1,5 +1,4 @@
 import fs from 'fs'
-import path from 'path'
 import { readJsonFile, makeId } from './util.service.js'
 
 export const userService = {
