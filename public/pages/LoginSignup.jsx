@@ -1,5 +1,5 @@
 const { useState } = React
-const { useNavigate } = ReactRouterDOM
+const { useNavigate } = ReactRouter
 
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { userService } from '../services/user.service.js'
