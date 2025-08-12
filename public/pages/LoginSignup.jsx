@@ -76,6 +76,7 @@ export function LoginSignup({ setLoggedinUser }) {
                     onChange={handleChange}
                     required
                 />}
+                <button>{isSignup ? 'Signup' : 'Login'}</button>
             </form>
 
             <div className="btns">
