@@ -24,3 +24,7 @@
 5.8.2025, 15:38:37 - DEBUG - req.body | {"title":"Cannot get Car","description":"Problem occurs when clicking get button","severity":5,"createdAt":1622108159454,"labels":["critical","need-CR","dev-branch"]}
 12.8.2025, 20:35:01 - DEBUG - req.body | {"_id":"bug001","title":"Cannot save a Car","description":"Problem occurs when clicking Save button on form","severity":1,"createdAt":1622107359454,"labels":["critical","need-CR","dev-branch"],"creator":{"_id":"u101","fullname":"Puki Ja"}}
 12.8.2025, 20:35:17 - INFO - Bug bug005 removed
+12.8.2025, 20:44:30 - INFO - Bug bug001 removed
+12.8.2025, 20:44:33 - ERROR - Couldnt find bug bug001 in bugService
+12.8.2025, 20:44:33 - ERROR - Cannot get bug
+12.8.2025, 20:45:45 - INFO - Bug bug003 removed

@@ -22,8 +22,9 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
                     <BugPreview bug={bug} />
                     <section className="actions">
                         <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
-                        <button onClick={() => onEditBug(bug)}>Edit</button>
-                        <button onClick={() => onRemoveBug(bug._id)}>x</button>
+                        {isCreator(bug) && <button className="btn" onClick={() => onRemoveBug(bug._id)}>
+                            Delete
+                        </button>}
                     </section>
                 </li>
             ))}

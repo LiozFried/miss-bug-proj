@@ -1,36 +1,5 @@
 [
   {
-    "_id": "bug001",
-    "title": "Cannot save a Car",
-    "description": "Problem occurs when clicking Save button on form",
-    "severity": 1,
-    "createdAt": 1622107359454,
-    "labels": [
-      "critical",
-      "need-CR",
-      "dev-branch"
-    ],
-    "creator": {
-      "_id": "u101",
-      "fullname": "Puki Ja"
-    }
-  },
-  {
-    "_id": "bug003",
-    "title": "Details not syncing",
-    "description": "Details sync fails without error message",
-    "severity": 5,
-    "createdAt": 1624107359454,
-    "labels": [
-      "sync",
-      "critical"
-    ],
-    "creator": {
-      "_id": "u101",
-      "fullname": "Puki Ja"
-    }
-  },
-  {
     "_id": "bug006",
     "title": "Slow response from server",
     "description": "API call takes 30s to return",
