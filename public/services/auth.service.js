@@ -14,7 +14,11 @@ function login({ username, password }) {
         .then(_setLoggedinUser)
 }
 
-
+function signup({ username, password, fullname }) {
+    return axios.post(BASE_URL + 'signup', { username, password, fullname })
+        .then(res => res.data)
+        .then(_setLoggedinUser)
+}
 
 function _setLoggedinUser(user) {
     const { _id, fullname, isAdmin } = user
