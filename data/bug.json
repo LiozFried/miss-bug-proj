@@ -1,20 +1,5 @@
 [
   {
-    "_id": "bug006",
-    "title": "Slow response from server",
-    "description": "API call takes 30s to return",
-    "severity": 2,
-    "createdAt": 1627107359454,
-    "labels": [
-      "performance",
-      "backend"
-    ],
-    "creator": {
-      "_id": "cQMMn",
-      "fullname": "Gigi Gu"
-    }
-  },
-  {
     "_id": "bug007",
     "title": "Incorrect total in cart",
     "description": "Discount not applied correctly",

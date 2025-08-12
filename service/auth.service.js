@@ -13,9 +13,13 @@ function checkLogin({ username, password }) {
     return userService.getByUsername(username)
         .then(user => {
             if (user && user.password === password) {
-                user = { ...user }
-                delete user.password
-                return Promise.resolve(user)
+
+                const userToReturn = {
+                    _id: user._id,
+                    fullname: user.fullname,
+                    isAdmin: user.isAdmin
+                }
+                return Promise.resolve(userToReturn)
             }
             return Promise.reject()
         })

@@ -8,10 +8,10 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
     const loggedinUser = authService.getLoggedinUser()
 
     function isCreator(bug) {
-        if (!loggedinUser) return false
-        if (!bug.creator) return true
-        return loggedinUser.isAdmin || bug.creator._id === loggedinUser._id
-    }
+    if (!loggedinUser) return false
+    
+    return loggedinUser.isAdmin || (bug.creator && bug.creator._id === loggedinUser._id)
+}
 
     if (!bugs) return <div>Loading...</div>
 
