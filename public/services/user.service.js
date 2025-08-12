@@ -4,6 +4,7 @@ export const userService = {
     query,
     getById,
     getEmptyCredentials,
+    remove,
 }
 
 function query() {
@@ -22,4 +23,9 @@ function getEmptyCredentials() {
         password: '',
         fullname: ''
     }
+}
+
+function remove(userId) {
+    return axios.delete(BASE_URL + userId)
+        .then(res => res.data)
 }

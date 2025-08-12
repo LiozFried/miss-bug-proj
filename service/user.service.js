@@ -9,7 +9,7 @@ export const userService = {
     addUser,
 }
 
-const users = readJsonFile('data/user.json')
+let users = readJsonFile('data/user.json')
 
 function query() {
     const usersToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname }))

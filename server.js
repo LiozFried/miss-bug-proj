@@ -156,6 +156,21 @@ app.get('/api/user/:id', (req, res) => {
         })
 })
 
+app.delete('/api/user/:id', (req, res) => {
+    const { loginToken } = req.cookies
+    const loggedinUser = authService.validateToken(loginToken)
+
+    if (!loggedinUser || !loggedinUser.isAdmin) return res.status(401).send('Cannot remove user')
+    const { userId } = req.params
+
+    userService.remove(userId)
+        .then(() => res.send('Removed!'))
+        .catch(err => {
+            loggerService.error('Cannot delete user!', err)
+            res.status(401).send('Cannot delete user!')
+        })
+})
+
 app.post('/api/auth/login', (req, res) => {
     const credentials = req.body
 
