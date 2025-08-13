@@ -44,7 +44,7 @@ function addUser(user) {
             user._id = makeId()
             users.push(user)
 
-            return _saveUserToFile()
+            return _saveUsersToFile()
                 .then(() => {
                     user = { ...user }
                     delete user.password

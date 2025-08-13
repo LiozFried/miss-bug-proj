@@ -33,3 +33,4 @@
 12.8.2025, 21:29:38 - ERROR - Cannot delete user! | ReferenceError: __dirname is not defined
 12.8.2025, 21:30:32 - ERROR - Cannot delete user! | ReferenceError: __dirname is not defined
 12.8.2025, 21:52:57 - ERROR - Cannot delete user! | sorry not found
+13.8.2025, 10:54:21 - DEBUG - req.body | {"title":"Bug 1755071651904","severity":3,"description":"lalala"}
