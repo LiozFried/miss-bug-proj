@@ -161,7 +161,7 @@ app.delete('/api/user/:id', (req, res) => {
     const loggedinUser = authService.validateToken(loginToken)
 
     if (!loggedinUser || !loggedinUser.isAdmin) return res.status(401).send('Cannot remove user')
-    const { userId } = req.params
+    const userId = req.params.id
 
     userService.remove(userId)
         .then(() => res.send('Removed!'))
